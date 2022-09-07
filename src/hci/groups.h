@@ -4,6 +4,34 @@
 #include "../intdisplay.h"
 #include "objects_stats.h"
 
+class GroupButton : public DynamicIntFancyButton
+{
+private:
+	typedef DynamicIntFancyButton BaseWidget;
+public:
+	// BuildObjectButton(const std::shared_ptr<GroupController> &controller, size_t newObjectIndex)
+	// 	: controller(controller)
+	// {
+	// 	objectIndex = newObjectIndex;
+	// }
+	void clickPrimary() override
+	{
+
+	}
+protected:
+	void display(int xOffset, int yOffset) override
+	{
+
+	}
+	std::string getTip() override
+	{
+		return "";
+	}
+	bool isHighlighted() const override
+	{
+		return false;
+	}
+};
 // class GroupController: public BaseObjectsController
 // {
 // 
@@ -24,7 +52,7 @@ public:
 		widget->initialize();
 		return widget;
 	}
-	std::shared_ptr<ObjectButton> makeGroupButton();
+	std::shared_ptr<GroupButton> makeGroupButton();
 	std::shared_ptr<IntListTabWidget> objectsList;
 };
 
