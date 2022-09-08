@@ -21,7 +21,12 @@ public:
 protected:
 	void display(int xOffset, int yOffset) override
 	{
-
+		// find how the control group gets the droids
+		// select a droid here so it's displayed
+		// DROID* droidtest = 
+		// displayIMD(AtlasImage(), ImdObject::Droid(droidtest), xOffset, yOffset);
+		// displayIfHighlight(xOffset, yOffset);
+		displayBlank(xOffset, yOffset);
 	}
 	std::string getTip() override
 	{
@@ -54,6 +59,7 @@ public:
 	}
 	std::shared_ptr<GroupButton> makeGroupButton();
 	std::shared_ptr<IntListTabWidget> objectsList;
+	void addTabList();
 };
 
 class GroupController
