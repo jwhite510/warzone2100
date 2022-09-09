@@ -4,6 +4,7 @@
 #include "../intdisplay.h"
 #include "objects_stats.h"
 
+#include "../objmem.h"
 #include "../input/keyconfig.h"
 #include "../keybind.h"
 
@@ -26,12 +27,19 @@ public:
 protected:
 	void display(int xOffset, int yOffset) override
 	{
+
+		// get droid that is in the group
+		DROID	*psDroid;
+		for (psDroid = apsDroidLists[selectedPlayer]; psDroid != nullptr; psDroid = psDroid->psNext) {
+			displayIMD(AtlasImage(), ImdObject::Droid(psDroid), xOffset, yOffset);
+			break;
+		}
+
 		// find how the control group gets the droids
 		// select a droid here so it's displayed
 		// DROID* droidtest = 
-		// displayIMD(AtlasImage(), ImdObject::Droid(droidtest), xOffset, yOffset);
 		// displayIfHighlight(xOffset, yOffset);
-		displayBlank(xOffset, yOffset);
+		// displayBlank(xOffset, yOffset);
 	}
 	std::string getTip() override
 	{
