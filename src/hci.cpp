@@ -1351,7 +1351,7 @@ INT_RETVAL intRunWidgets()
 		WidgetTriggers const &triggers = widgRunScreen(psWScreen);
 		for (const auto &trigger: triggers)
 		{
-			retIDs.push_back(trigger.widget->id);
+			retIDs.push_back(trigger.widget->id); // this is being called when clicking the button
 		}
 	}
 

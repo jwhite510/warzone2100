@@ -205,6 +205,7 @@ protected:
 		}
 		displayIMD(AtlasImage(), ImdObject::Droid(droid), xOffset, yOffset);
 		displayIfHighlight(xOffset, yOffset);
+		// displayBlank(xOffset, yOffset);
 	}
 
 	BuildController &getController() const override

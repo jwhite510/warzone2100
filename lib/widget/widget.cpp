@@ -1294,7 +1294,7 @@ WidgetTriggers const &widgRunScreen(const std::shared_ptr<W_SCREEN> &psScreen)
 			});
 			if (!didProcessClick)
 			{
-				psScreen->psForm->processClickRecursive(&sContext, wkey, pressed);
+				psScreen->psForm->processClickRecursive(&sContext, wkey, pressed); // this is where trigger for the button for manufacture / research is identified
 			}
 
 			lastReleasedKey_DEPRECATED = wkey;
@@ -1336,7 +1336,7 @@ WidgetTriggers const &widgRunScreen(const std::shared_ptr<W_SCREEN> &psScreen)
 	cleanupDeletedOverlays();
 
 	/* Return the ID of a pressed button or finished edit box if any */
-	return psScreen->retWidgets;
+	return psScreen->retWidgets; // this should return the id of the button that is clicked
 }
 
 /* Set the id number for widgRunScreen to return */
@@ -1344,7 +1344,7 @@ void W_SCREEN::setReturn(const std::shared_ptr<WIDGET> &psWidget)
 {
 	WidgetTrigger trigger;
 	trigger.widget = psWidget;
-	retWidgets.push_back(trigger);
+	retWidgets.push_back(trigger); // here is where retWidgets vector is given the trigger
 }
 
 void WIDGET::displayRecursive(WidgetGraphicsContext const &context)

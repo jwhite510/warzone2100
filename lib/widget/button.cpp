@@ -151,7 +151,7 @@ void W_BUTTON::released(W_CONTEXT *, WIDGET_KEY key)
 				auto onClickHandler = *it;
 				if (onClickHandler)
 				{
-					onClickHandler(*this);
+					onClickHandler(*this); // maybe I can use this for a callback function
 				}
 			}
 
