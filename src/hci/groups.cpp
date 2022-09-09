@@ -2,13 +2,12 @@
 #include "groups.h"
 #include "objects_stats.h"
 
-static bool testv = true;
 
 
 void GroupsForum::display(int xOffset, int yOffset)
 {
 	// add buttons here
-	if (testv) {
+	if (!createdGroupButtons) {
 		// create the 11 buttons for each group
 		for (size_t i = 1; i <= 10; i++) {
 			// check if the 10th group works
@@ -19,7 +18,7 @@ void GroupsForum::display(int xOffset, int yOffset)
 			groupButton->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
 		}
 	}
-	testv = false;
+	createdGroupButtons = true;
 	// draw the background
 	BaseWidget::display(xOffset, yOffset);
 }
