@@ -9,7 +9,6 @@
 #include "../qtscript.h"
 #include "../power.h"
 #include "../map.h"
-#include "groups.h"
 
 DROID *BuildController::highlightedBuilder = nullptr;
 bool BuildController::showFavorites = false;
@@ -638,9 +637,6 @@ bool BuildController::showInterface()
 	psWScreen->psForm->attach(objectsForm);
 	displayStatsForm();
 	triggerEvent(TRIGGER_MENU_BUILD_UP);
-	// also attach the new test forum
-	auto groupsForm = GroupsForum::make();
-	psWScreen->psForm->attach(groupsForm);
 	return true;
 }
 

@@ -79,6 +79,7 @@
 #include "hci/manufacture.h"
 #include "hci/commander.h"
 #include "notifications.h"
+#include "hci/groups.h"
 
 // Empty edit window
 static bool secondaryWindowUp = false;
@@ -2001,6 +2002,13 @@ void intAlliedResearchChanged()
 	{
 		intRefreshScreen();
 	}
+}
+
+bool intShowGroupSelectionMenu()
+{
+	auto groupsForm = GroupsForum::make();
+	psWScreen->psForm->attach(groupsForm);
+	return true;
 }
 
 /* Add the reticule widgets to the widget screen */

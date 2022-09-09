@@ -2806,6 +2806,7 @@ wzapi::no_return_value wzapi::showInterface(WZAPI_NO_PARAMS)
 {
 	intAddReticule();
 	intShowPowerBar();
+	intShowGroupSelectionMenu();
 	return {};
 }
 
