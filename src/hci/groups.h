@@ -4,6 +4,9 @@
 #include "../intdisplay.h"
 #include "objects_stats.h"
 
+#include "../input/keyconfig.h"
+#include "../keybind.h"
+
 class GroupButton : public DynamicIntFancyButton
 {
 private:
@@ -16,6 +19,8 @@ public:
 	// }
 	void clickPrimary() override
 	{
+		// select the group
+		kf_SelectGrouping(1);
 
 	}
 protected:
