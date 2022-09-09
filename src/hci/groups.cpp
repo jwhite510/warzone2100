@@ -13,7 +13,7 @@ void GroupsForum::display(int xOffset, int yOffset)
 		auto buttonHolder1 = std::make_shared<WIDGET>();
 		objectsList->addWidgetToLayout(buttonHolder1);
 		// // create a button and attach it
-		auto groupButton = makeGroupButton();
+		auto groupButton = makeGroupButton((size_t)1);
 		buttonHolder1->attach(groupButton);
 		groupButton->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
 
@@ -21,7 +21,7 @@ void GroupsForum::display(int xOffset, int yOffset)
 		auto buttonHolder2 = std::make_shared<WIDGET>();
 		objectsList->addWidgetToLayout(buttonHolder2);
 		// // attach a second button
-		auto groupButton2 = makeGroupButton();
+		auto groupButton2 = makeGroupButton((size_t)2);
 		buttonHolder2->attach(groupButton2);
 		groupButton2->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
 	}
@@ -62,9 +62,9 @@ void GroupsForum::addTabList()
 	objectsList->setGeometry((STAT_WIDTH - statListWidth) / 2, STAT_TABFORMY, statListWidth, STAT_HEIGHT - STAT_TABFORMY);
 }
 
-std::shared_ptr<GroupButton> GroupsForum::makeGroupButton()
+std::shared_ptr<GroupButton> GroupsForum::makeGroupButton(size_t groupNumber)
 {
-	return std::make_shared<GroupButton>();
+	return std::make_shared<GroupButton>(groupNumber);
 }
 
 

@@ -13,15 +13,14 @@ class GroupButton : public DynamicIntFancyButton
 private:
 	typedef DynamicIntFancyButton BaseWidget;
 public:
-	// BuildObjectButton(const std::shared_ptr<GroupController> &controller, size_t newObjectIndex)
-	// 	: controller(controller)
-	// {
-	// 	objectIndex = newObjectIndex;
-	// }
+	size_t groupNumber;
+	GroupButton(size_t groupNumber)
+		: groupNumber(groupNumber) { }
+
 	void clickPrimary() override
 	{
 		// select the group
-		kf_SelectGrouping(1);
+		kf_SelectGrouping(groupNumber);
 
 	}
 protected:
@@ -30,16 +29,23 @@ protected:
 
 		// get droid that is in the group
 		DROID	*psDroid;
+		bool foundGroup = false;
 		for (psDroid = apsDroidLists[selectedPlayer]; psDroid != nullptr; psDroid = psDroid->psNext) {
-			displayIMD(AtlasImage(), ImdObject::Droid(psDroid), xOffset, yOffset);
-			break;
+			// display whatever group has the most
+			if (psDroid->group == groupNumber) {
+				foundGroup = true;
+				displayIMD(AtlasImage(), ImdObject::Droid(psDroid), xOffset, yOffset);
+				break;
+			}
+			// TODO display the number of units in the group
 		}
-
+		if (!foundGroup) {
+			displayBlank(xOffset, yOffset);
+		}
 		// find how the control group gets the droids
 		// select a droid here so it's displayed
 		// DROID* droidtest = 
 		// displayIfHighlight(xOffset, yOffset);
-		// displayBlank(xOffset, yOffset);
 	}
 	std::string getTip() override
 	{
@@ -70,7 +76,7 @@ public:
 		widget->initialize();
 		return widget;
 	}
-	std::shared_ptr<GroupButton> makeGroupButton();
+	std::shared_ptr<GroupButton> makeGroupButton(size_t groupNumber);
 	std::shared_ptr<IntListTabWidget> objectsList;
 	void addTabList();
 };
