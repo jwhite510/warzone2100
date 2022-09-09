@@ -26,7 +26,7 @@ void GroupsForum::display(int xOffset, int yOffset)
 void GroupsForum::initialize()
 {
 	setCalcLayout(LAMBDA_CALCLAYOUT_SIMPLE({
-		psWidget->setGeometry(OBJ_BACKX, OBJ_BACKY - 250, OBJ_BACKWIDTH, OBJ_BACKHEIGHT);
+		psWidget->setGeometry(OBJ_BACKX, OBJ_BACKY - 80, OBJ_BACKWIDTH, OBJ_BACKHEIGHT - 40);
 	}));
 	addTabList();
 }
