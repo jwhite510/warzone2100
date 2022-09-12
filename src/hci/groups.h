@@ -14,6 +14,7 @@ class GroupButton : public DynamicIntFancyButton
 private:
 	typedef DynamicIntFancyButton BaseWidget;
 	std::shared_ptr<W_LABEL> groupNumberLabel;
+	std::shared_ptr<W_LABEL> groupCountLabel;
 public:
 	size_t groupNumber;
 	static std::shared_ptr<GroupButton> make(size_t groupNumber)
@@ -27,8 +28,12 @@ public:
 	void initialize()
 	{
 		attach(groupNumberLabel = std::make_shared<W_LABEL>());
-		groupNumberLabel->setGeometry(OBJ_TEXTX, OBJ_B1TEXTY, 16, 16);
+		groupNumberLabel->setGeometry(OBJ_TEXTX, OBJ_B1TEXTY - 5, 16, 16);
 		groupNumberLabel->setString(WzString::fromUtf8(astringf("%u", groupNumber)));
+
+		attach(groupCountLabel = std::make_shared<W_LABEL>());
+		groupCountLabel->setGeometry(OBJ_TEXTX + 40, OBJ_B1TEXTY + 20, 16, 16);
+		groupCountLabel->setString("");
 	}
 	GroupButton() { }
 
@@ -46,27 +51,25 @@ public:
 protected:
 	void display(int xOffset, int yOffset) override
 	{
-		// figure out how to display the numbers in the corner of the button
+		DROID	*psDroid, *displayDroid = NULL;
+		int numberInGroup = 0;
 
-		// get droid that is in the group
-		DROID	*psDroid;
-		bool foundGroup = false;
 		for (psDroid = apsDroidLists[selectedPlayer]; psDroid != nullptr; psDroid = psDroid->psNext) {
 			// display whatever group has the most
 			if (psDroid->group == groupNumber) {
-				foundGroup = true;
-				displayIMD(AtlasImage(), ImdObject::Droid(psDroid), xOffset, yOffset);
-				break;
+				numberInGroup++;
+				if (!displayDroid) {
+					displayDroid = psDroid;
+				}
 			}
-			// TODO display the number of units in the group
 		}
-		if (!foundGroup) {
+		if (!numberInGroup) {
+			groupCountLabel->setString("");
 			displayBlank(xOffset, yOffset);
+		} else {
+			displayIMD(AtlasImage(), ImdObject::Droid(displayDroid), xOffset, yOffset);
+			groupCountLabel->setString(WzString::fromUtf8(astringf("%u", numberInGroup)));
 		}
-		// find how the control group gets the droids
-		// select a droid here so it's displayed
-		// DROID* droidtest = 
-		// displayIfHighlight(xOffset, yOffset);
 	}
 	std::string getTip() override
 	{
