@@ -23,6 +23,11 @@ public:
 		kf_SelectGrouping(groupNumber);
 
 	}
+	void clickSecondary() override
+	{
+		assignDroidsToGroup(selectedPlayer, groupNumber, true);
+
+	}
 protected:
 	void display(int xOffset, int yOffset) override
 	{
