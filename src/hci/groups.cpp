@@ -54,7 +54,9 @@ void GroupsForum::addTabList()
 
 std::shared_ptr<GroupButton> GroupsForum::makeGroupButton(size_t groupNumber)
 {
-	return std::make_shared<GroupButton>(groupNumber);
+	return GroupButton::make(groupNumber);
+	// return NULL;
+	// return std::make_shared<GroupButton>(groupNumber);
 }
 
 

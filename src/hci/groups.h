@@ -7,15 +7,30 @@
 #include "../objmem.h"
 #include "../input/keyconfig.h"
 #include "../keybind.h"
+#include "lib/widget/label.h"
 
 class GroupButton : public DynamicIntFancyButton
 {
 private:
 	typedef DynamicIntFancyButton BaseWidget;
+	std::shared_ptr<W_LABEL> groupNumberLabel;
 public:
 	size_t groupNumber;
-	GroupButton(size_t groupNumber)
-		: groupNumber(groupNumber) { }
+	static std::shared_ptr<GroupButton> make(size_t groupNumber)
+	{
+		class make_shared_enabler: public GroupButton {};
+		auto widget = std::make_shared<make_shared_enabler>();
+		widget->groupNumber = groupNumber;
+		widget->initialize();
+		return widget;
+	}
+	void initialize()
+	{
+		attach(groupNumberLabel = std::make_shared<W_LABEL>());
+		groupNumberLabel->setGeometry(OBJ_TEXTX, OBJ_B1TEXTY, 16, 16);
+		groupNumberLabel->setString(WzString::fromUtf8(astringf("%u", groupNumber)));
+	}
+	GroupButton() { }
 
 	void clickPrimary() override
 	{
@@ -31,6 +46,7 @@ public:
 protected:
 	void display(int xOffset, int yOffset) override
 	{
+		// figure out how to display the numbers in the corner of the button
 
 		// get droid that is in the group
 		DROID	*psDroid;
