@@ -93,7 +93,8 @@ private:
 public:
 	void display(int xOffset, int yOffset);
 	void initialize();
-	void moveLayout();
+	void moveLayoutUp();
+	void moveLayoutDown();
 	static std::shared_ptr<GroupsForum> make()
 	{
 		class make_shared_enabler: public GroupsForum {};

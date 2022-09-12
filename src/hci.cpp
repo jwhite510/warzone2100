@@ -1210,6 +1210,7 @@ void intResetScreen(bool NoAnim, bool skipMissionResultScreen /*= false*/)
 	intMode = INT_NORMAL;
 	//clearSelelection() sets IntRefreshPending = true by calling intRefreshScreen() but if we're doing this then we won't need to refresh - hopefully!
 	IntRefreshPending = false;
+	intLowerGroupsMenu();
 }
 
 void intOpenDebugMenu(OBJECT_TYPE id)
@@ -1912,6 +1913,13 @@ void intStartConstructionPosition(DROID *builder, STRUCTURE_STATS *structure)
 void intStartStructPosition(BASE_STATS *psStats)
 {
 	init3DBuilding(psStats, nullptr, nullptr);
+}
+
+void intLowerGroupsMenu() {
+	GroupsForum* groupsForum = (GroupsForum*)widgGetFromID(psWScreen, IDOBJ_GROUP);
+	if (groupsForum) {
+		groupsForum->moveLayoutDown();
+	}
 }
 
 
