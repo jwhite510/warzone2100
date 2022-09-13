@@ -1474,6 +1474,8 @@ INT_RETVAL intRunWidgets()
 			{
 				psCurrentMsg = nullptr;
 			}
+			// remove the groups Menu
+			widgDelete(psWScreen, IDOBJ_GROUP);
 			addIntelScreen();
 			reticuleCallback(RETBUT_INTELMAP);
 			break;
@@ -1487,6 +1489,8 @@ INT_RETVAL intRunWidgets()
 			widgSetButtonState(psWScreen, IDRET_DESIGN, WBUT_CLICKLOCK);
 			/*add the power bar - for looks! */
 			intShowPowerBar();
+			widgDelete(psWScreen, IDOBJ_GROUP);
+			// remove the groups Menu
 			intAddDesign(false);
 			intMode = INT_DESIGN;
 			gInputManager.contexts().pushState();
@@ -1916,8 +1920,11 @@ void intStartStructPosition(BASE_STATS *psStats)
 }
 
 void intLowerGroupsMenu() {
+	// if it's not already created, create it here
 	GroupsForum* groupsForum = (GroupsForum*)widgGetFromID(psWScreen, IDOBJ_GROUP);
-	if (groupsForum) {
+	if (!groupsForum) {
+		intShowGroupSelectionMenu();
+	} else if (groupsForum) {
 		groupsForum->moveLayoutDown();
 	}
 }
