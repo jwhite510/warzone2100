@@ -1474,9 +1474,9 @@ INT_RETVAL intRunWidgets()
 			{
 				psCurrentMsg = nullptr;
 			}
+			addIntelScreen();
 			// remove the groups Menu
 			widgDelete(psWScreen, IDOBJ_GROUP);
-			addIntelScreen();
 			reticuleCallback(RETBUT_INTELMAP);
 			break;
 
