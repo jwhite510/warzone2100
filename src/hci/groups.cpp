@@ -106,7 +106,7 @@ void GroupsForum::initialize()
 	for (size_t i = 1; i <= 10; i++) {
 		// check if the 10th group works
 		auto buttonHolder = std::make_shared<WIDGET>();
-		objectsList->addWidgetToLayout(buttonHolder);
+		groupsList->addWidgetToLayout(buttonHolder);
 		auto groupButton = makeGroupButton(i % 10);
 		buttonHolder->attach(groupButton);
 		groupButton->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
@@ -115,9 +115,9 @@ void GroupsForum::initialize()
 
 void GroupsForum::addTabList()
 {
-	attach(objectsList = IntListTabWidget::make());
-	objectsList->id = IDOBJ_GROUP;
-	objectsList->setCalcLayout(LAMBDA_CALCLAYOUT_SIMPLE({
+	attach(groupsList = IntListTabWidget::make());
+	groupsList->id = IDOBJ_GROUP;
+	groupsList->setCalcLayout(LAMBDA_CALCLAYOUT_SIMPLE({
 		IntListTabWidget *pObjectsList = static_cast<IntListTabWidget *>(psWidget);
 		assert(pObjectsList != nullptr);
 		pObjectsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT * 2);
@@ -126,12 +126,12 @@ void GroupsForum::addTabList()
 		pObjectsList->setGeometry((OBJ_BACKWIDTH - objListWidth) / 2, OBJ_TABY, objListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
 	}));
 
-	// attach(objectsList = IntListTabWidget::make());
-	// objectsList->id = IDOBJ_GROUP;
-	// objectsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
-	// objectsList->setChildSpacing(OBJ_GAP, OBJ_GAP);
+	// attach(groupsList = IntListTabWidget::make());
+	// groupsList->id = IDOBJ_GROUP;
+	// groupsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
+	// groupsList->setChildSpacing(OBJ_GAP, OBJ_GAP);
 	// int statListWidth = OBJ_BUTWIDTH * 5 + STAT_GAP * 4;
-	// objectsList->setGeometry((OBJ_BACKWIDTH - objListWidth) / 2, OBJ_TABY, objListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
+	// groupsList->setGeometry((OBJ_BACKWIDTH - objListWidth) / 2, OBJ_TABY, objListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
 }
 
 std::shared_ptr<GroupButton> GroupsForum::makeGroupButton(size_t groupNumber)

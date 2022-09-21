@@ -35,13 +35,8 @@ public:
 		return widget;
 	}
 	std::shared_ptr<GroupButton> makeGroupButton(size_t groupNumber);
-	std::shared_ptr<IntListTabWidget> objectsList;
+	std::shared_ptr<IntListTabWidget> groupsList;
 	void addTabList();
-};
-
-class GroupController
-{
-	// this is where the list of groups will be accessed
 };
 
 #endif // __INCLUDED_SRC_HCI_GROUPS_H__
