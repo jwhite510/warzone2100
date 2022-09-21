@@ -95,7 +95,6 @@ class GroupsForum: public IntFormAnimated
 {
 private:
 	typedef IntFormAnimated BaseWidget;
-	bool createdGroupButtons = false;
 public:
 	void display(int xOffset, int yOffset);
 	void initialize();

@@ -6,19 +6,6 @@
 
 void GroupsForum::display(int xOffset, int yOffset)
 {
-	// add buttons here
-	if (!createdGroupButtons) {
-		// create the 11 buttons for each group
-		for (size_t i = 1; i <= 10; i++) {
-			// check if the 10th group works
-			auto buttonHolder = std::make_shared<WIDGET>();
-			objectsList->addWidgetToLayout(buttonHolder);
-			auto groupButton = makeGroupButton(i % 10);
-			buttonHolder->attach(groupButton);
-			groupButton->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
-		}
-	}
-	createdGroupButtons = true;
 	// draw the background
 	BaseWidget::display(xOffset, yOffset);
 }
@@ -39,6 +26,15 @@ void GroupsForum::initialize()
 	id = IDOBJ_GROUP;
 	moveLayoutDown();
 	addTabList();
+	// create the 11 buttons for each group
+	for (size_t i = 1; i <= 10; i++) {
+		// check if the 10th group works
+		auto buttonHolder = std::make_shared<WIDGET>();
+		objectsList->addWidgetToLayout(buttonHolder);
+		auto groupButton = makeGroupButton(i % 10);
+		buttonHolder->attach(groupButton);
+		groupButton->setGeometry(0, 0, OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
+	}
 }
 
 void GroupsForum::addTabList()
@@ -65,8 +61,6 @@ void GroupsForum::addTabList()
 std::shared_ptr<GroupButton> GroupsForum::makeGroupButton(size_t groupNumber)
 {
 	return GroupButton::make(groupNumber);
-	// return NULL;
-	// return std::make_shared<GroupButton>(groupNumber);
 }
 
 
