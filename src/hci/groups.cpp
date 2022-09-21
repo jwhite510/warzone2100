@@ -79,7 +79,6 @@ protected:
 	}
 };
 
-
 void GroupsForum::display(int xOffset, int yOffset)
 {
 	// draw the background
@@ -91,11 +90,13 @@ void GroupsForum::moveLayoutUp() {
 		psWidget->setGeometry(OBJ_BACKX, OBJ_BACKY - 80, OBJ_BACKWIDTH, OBJ_BACKHEIGHT - 40);
 	}));
 }
+
 void GroupsForum::moveLayoutDown() {
 	setCalcLayout(LAMBDA_CALCLAYOUT_SIMPLE({
 		psWidget->setGeometry(OBJ_BACKX, OBJ_BACKY, OBJ_BACKWIDTH, OBJ_BACKHEIGHT);
 	}));
 }
+
 void GroupsForum::initialize()
 {
 	// the layout should be like this when the build menu is open
@@ -117,21 +118,10 @@ void GroupsForum::addTabList()
 {
 	attach(groupsList = IntListTabWidget::make());
 	groupsList->id = IDOBJ_GROUP;
-	groupsList->setCalcLayout(LAMBDA_CALCLAYOUT_SIMPLE({
-		IntListTabWidget *pObjectsList = static_cast<IntListTabWidget *>(psWidget);
-		assert(pObjectsList != nullptr);
-		pObjectsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT * 2);
-		pObjectsList->setChildSpacing(OBJ_GAP, OBJ_GAP);
-		int objListWidth = OBJ_BUTWIDTH * 5 + STAT_GAP * 4;
-		pObjectsList->setGeometry((OBJ_BACKWIDTH - objListWidth) / 2, OBJ_TABY, objListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
-	}));
-
-	// attach(groupsList = IntListTabWidget::make());
-	// groupsList->id = IDOBJ_GROUP;
-	// groupsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT);
-	// groupsList->setChildSpacing(OBJ_GAP, OBJ_GAP);
-	// int statListWidth = OBJ_BUTWIDTH * 5 + STAT_GAP * 4;
-	// groupsList->setGeometry((OBJ_BACKWIDTH - objListWidth) / 2, OBJ_TABY, objListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
+	groupsList->setChildSize(OBJ_BUTWIDTH, OBJ_BUTHEIGHT * 2);
+	groupsList->setChildSpacing(OBJ_GAP, OBJ_GAP);
+	int groupListWidth = OBJ_BUTWIDTH * 5 + STAT_GAP * 4;
+	groupsList->setGeometry((OBJ_BACKWIDTH - groupListWidth) / 2, OBJ_TABY, groupListWidth, OBJ_BACKHEIGHT - OBJ_TABY);
 }
 
 std::shared_ptr<GroupButton> GroupsForum::makeGroupButton(size_t groupNumber)
