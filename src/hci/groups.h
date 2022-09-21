@@ -8,6 +8,7 @@
 #include "../input/keyconfig.h"
 #include "../keybind.h"
 #include "lib/widget/label.h"
+#include "../selection.h"
 
 class GroupButton : public DynamicIntFancyButton
 {
@@ -52,15 +53,20 @@ protected:
 	void display(int xOffset, int yOffset) override
 	{
 		DROID	*psDroid, *displayDroid = NULL;
-		int numberInGroup = 0;
+		size_t numberInGroup = 0;
+		std::map<std::vector<uint32_t>, size_t> unitcounter;
+		size_t most_droids_of_same_type_in_group = 0;
 
 		for (psDroid = apsDroidLists[selectedPlayer]; psDroid != nullptr; psDroid = psDroid->psNext) {
-			// display whatever group has the most
+			// display whatever unit occurs the most in this group
 			if (psDroid->group == groupNumber) {
-				numberInGroup++;
-				if (!displayDroid) {
+				// find the identifier for this droid
+				std::vector<uint32_t> components = buildComponentsFromDroid(psDroid);
+				if (++unitcounter[components] > most_droids_of_same_type_in_group) {
+					most_droids_of_same_type_in_group = unitcounter[components];
 					displayDroid = psDroid;
 				}
+				numberInGroup++;
 			}
 		}
 		if (!numberInGroup) {
