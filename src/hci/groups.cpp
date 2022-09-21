@@ -71,7 +71,7 @@ protected:
 	}
 	std::string getTip() override
 	{
-		return "";
+		return "Select / Assign Group Number: " + std::to_string(groupNumber);
 	}
 	bool isHighlighted() const override
 	{
