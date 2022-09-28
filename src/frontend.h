@@ -109,6 +109,7 @@ char const *graphicsOptionsShadowsString();
 char const *graphicsOptionsRadarString();
 char const *graphicsOptionsRadarJumpString();
 char const *graphicsOptionsScreenShakeString();
+char const *graphicsOptionsGroupsMenuEnabled();
 void seqFMVmode();
 void seqScanlineMode();
 
@@ -285,6 +286,8 @@ enum
 	FRONTEND_RADAR_JUMP_R,
 	FRONTEND_SSHAKE,
 	FRONTEND_SSHAKE_R,
+	FRONTEND_GROUPS,
+	FRONTEND_GROUPS_R,
 
 	FRONTEND_AUDIO_AND_ZOOMOPTIONS = 23000,                 // Audio and Zoom Options Menu
 	FRONTEND_3D_FX,						// 3d sound volume
